@@ -39,9 +39,9 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Text("Welcome to Instagram."),
+          const Text("Welcome to Instagram."),
           Row(
-            children: <Widget>[
+            children: const <Widget>[
               Padding(
                 padding: EdgeInsets.only(
                   left: 15,
@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
               StoryStack(),
             ],
           ),
-          ProfileCard(),
+          const ProfileCard(),
         ],
       ),
     );

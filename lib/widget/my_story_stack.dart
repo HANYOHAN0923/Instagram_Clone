@@ -11,21 +11,21 @@ class MyStoryStack extends StatelessWidget {
         Stack(
           alignment: Alignment.bottomRight,
           children: <Widget>[
-            SizedBox(
-              width: 70,
-              height: 70,
+            const SizedBox(
+              width: 60,
+              height: 60,
               child: CircleAvatar(
                 backgroundImage:
                     NetworkImage('https://i.imgur.com/KFXF6Po.jpg'),
               ),
             ),
             Container(
-              width: 70,
-              height: 70,
+              width: 60,
+              height: 60,
               alignment: Alignment.bottomRight,
               child: Stack(
                 alignment: Alignment.center,
-                children: <Widget>[
+                children: const <Widget>[
                   SizedBox(
                     width: 24,
                     height: 24,
@@ -38,8 +38,14 @@ class MyStoryStack extends StatelessWidget {
                     width: 20,
                     height: 20,
                     child: FloatingActionButton(
+                      hoverElevation: 0,
+                      focusElevation: 0,
+                      elevation: 0,
                       onPressed: null,
-                      child: Icon(Icons.add),
+                      child: Icon(
+                        Icons.add,
+                        size: 20,
+                      ),
                     ),
                   ),
                 ],
@@ -48,10 +54,10 @@ class MyStoryStack extends StatelessWidget {
           ],
         ),
         Container(
-          padding: EdgeInsets.only(top: 3),
+          padding: const EdgeInsets.only(top: 3),
           width: 55,
           height: 55,
-          child: AutoSizeText(
+          child: const AutoSizeText(
             'My Story',
             maxLines: 1,
           ),

@@ -19,7 +19,7 @@ class _StoryStackState extends State<StoryStack> {
           alignment: Alignment.center,
           children: <Widget>[
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
               child: SizedBox(
@@ -44,7 +44,7 @@ class _StoryStackState extends State<StoryStack> {
             Container(
               width: 55,
               height: 55,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
               ),
@@ -53,7 +53,7 @@ class _StoryStackState extends State<StoryStack> {
               width: 50,
               height: 50,
               child: InkWell(
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundImage: NetworkImage(
                     'https://file2.nocutnews.co.kr/newsroom/image/2022/10/25/202210250517532480_0.jpg',
                   ),
@@ -70,7 +70,7 @@ class _StoryStackState extends State<StoryStack> {
         Container(
           width: 60,
           height: 60,
-          child: AutoSizeText(
+          child: const AutoSizeText(
             'jo_glasss',
             maxLines: 1,
           ),
