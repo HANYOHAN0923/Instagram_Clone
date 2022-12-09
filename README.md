@@ -1,16 +1,12 @@
 # instagram_clone
+Just A simple INSTAGRAM UI CLONE
 
-A new Flutter project.
+## Referenced
+- [[플러터] 인스타그램 클론 코딩 : 개발하는남자](https://www.youtube.com/watch?v=hM2whwf2u14&list=PLgRxBCVPaZ_1iBe1v3-ZSSzHGdQo7AZPq)
+- [Flutter & Firebase Course - Build a Full Stack Instagram Clone : freeCodeCamp.org](https://www.youtube.com/watch?v=mEPm9w5QlJM)
+- [Flutter Instagram UI Redesign | Speed Code : Marcus Ng](https://www.youtube.com/watch?v=WYL66RNZpDI)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Third-Party Packages
+  cupertino_icons: ^1.0.2
+  auto_size_text:
+  image_picker: ^0.8.6
