@@ -24,6 +24,8 @@ class _MyWidgetState extends State<TabScreen> {
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {

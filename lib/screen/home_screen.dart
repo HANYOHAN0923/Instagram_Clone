@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/widget/my_story_stack.dart';
+import 'package:instagram_clone/widget/post_widget.dart';
 import 'package:instagram_clone/widget/story_stack.dart';
 import 'package:instagram_clone/widget/profile_card.dart';
 
@@ -37,27 +38,30 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          const Text("Welcome to Instagram."),
-          Row(
-            children: const <Widget>[
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 15,
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            const Text("Welcome to Instagram."),
+            Row(
+              children: const <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 15,
+                  ),
                 ),
-              ),
-              MyStoryStack(),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 20,
+                MyStoryStack(),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 20,
+                  ),
                 ),
-              ),
-              StoryStack(),
-            ],
-          ),
-          const ProfileCard(),
-        ],
+                StoryStack(),
+              ],
+            ),
+            const ProfileCard(),
+            const Post(),
+          ],
+        ),
       ),
     );
   }
