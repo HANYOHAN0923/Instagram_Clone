@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/model/account_model.dart';
 
 // can't be assigned to the parameter type 'preferredsizewidget'
 // https://stackoverflow.com/questions/49015038/removing-the-drop-shadow-from-a-scaffold-appbar-in-flutter
 class AccountAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const AccountAppBar({super.key});
+  final model = AccountModel();
+
+  AccountAppBar({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(100);
@@ -41,7 +44,9 @@ class AccountAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            model.logout();
+          },
           icon: const Icon(
             Icons.menu,
             color: Colors.black,

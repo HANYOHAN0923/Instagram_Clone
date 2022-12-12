@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/screen/posting_screen.dart';
-import 'package:instagram_clone/widget/search_bar.dart';
 import 'package:instagram_clone/widget/story_grid_view.dart';
 
 class SearchScreen extends StatefulWidget {

@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
-import './screen/tab_screen.dart';
+import 'package:instagram_clone/screen/authgate_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  // 비동기 처리 전 기다리기 (카메라 혹은 Firebase 사용시)
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -16,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const TabScreen(),
+      home: const AuthGate(),
     );
   }
 }
