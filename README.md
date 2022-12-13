@@ -7,6 +7,7 @@ Just A simple INSTAGRAM UI CLONE
 - [Flutter Instagram UI Redesign | Speed Code : Marcus Ng](https://www.youtube.com/watch?v=WYL66RNZpDI)
 
 ### Third-Party Packages
-  cupertino_icons: ^1.0.2
-  auto_size_text:
-  image_picker: ^0.8.6
+  cupertino_icons: ^1.0.2  
+  auto_size_text: \n  
+  image_picker: ^0.8.6  
+  firebase: https://firebase.flutter.dev/docs/ui/auth/theming/  

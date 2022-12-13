@@ -13,6 +13,15 @@ class _PostingState extends State<Posting> {
   final model = PostingModel();
   File? _image;
 
+  // TextController
+  // https://devmg.tistory.com/185
+  final _titleTextControlller = TextEditingController();
+  @override
+  void dispose() {
+    _titleTextControlller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +29,11 @@ class _PostingState extends State<Posting> {
         title: const Text("New Post"),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              if (_image != null && _titleTextControlller.text.isNotEmpty) {
+                model.uploadPost(_titleTextControlller.text, _image!);
+              }
+            },
             icon: const Icon(Icons.send),
           )
         ],
@@ -31,6 +44,7 @@ class _PostingState extends State<Posting> {
           child: Column(
             children: <Widget>[
               TextField(
+                controller: _titleTextControlller,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16.0),
@@ -46,10 +60,16 @@ class _PostingState extends State<Posting> {
                 onPressed: () async {
                   // image_picker
                   _image = await model.getImage();
+
+                  setState(() {});
                 },
                 child: const Text("Images..."),
               ),
-              if (_image != null) Image.file(_image!),
+              if (_image != null)
+                Image.file(
+                  _image!,
+                  width: 300,
+                ),
             ],
           ),
         ),

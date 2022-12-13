@@ -17,12 +17,14 @@ class AuthGate extends StatelessWidget {
       // snapshop: <User>는 Firebase에서 로그인한 객체에 대한 정보
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const SignInScreen(
+          return SignInScreen(
             // PROVIDED BY: flutterfire_ui/auth.dart
-            // https://firebase.flutter.dev/docs/ui/auth/theming/ 참고하기
             providerConfigs: [
               EmailProviderConfiguration(),
             ],
+            headerBuilder: (context, constraints, _) {
+              return Text('data');
+            },
           );
         }
         return const TabScreen();

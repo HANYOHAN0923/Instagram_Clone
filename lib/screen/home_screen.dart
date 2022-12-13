@@ -41,7 +41,6 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const Text("Welcome to Instagram."),
             Row(
               children: const <Widget>[
                 Padding(

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/model/home_model.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final model = HomeModel();
+
     return Card(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
@@ -14,24 +17,26 @@ class ProfileCard extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            const SizedBox(
+            SizedBox(
               width: 80,
               height: 80,
               child: CircleAvatar(
                 backgroundImage: NetworkImage(
-                    'https://file2.nocutnews.co.kr/newsroom/image/2022/10/25/202210250517532480_0.jpg'),
+                  model.getProfileImageUrl(),
+                ),
               ),
             ),
             const Padding(
               padding: EdgeInsets.only(top: 8),
             ),
-            const Text(
-              '조유리',
-              style: TextStyle(
+            Text(
+              model.getNickName(),
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
             const Text('johnhan님 외 9명이 \n 팔로우합니다'),
+            Text(model.getEmail()),
             const Padding(
               padding: EdgeInsets.only(top: 8),
             ),
