@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class HomeModel {
+class ProfileCardModel {
   String getEmail() {
     return FirebaseAuth.instance.currentUser?.email ?? 'No Email Adress';
   }

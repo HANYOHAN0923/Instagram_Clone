@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/model/home_model.dart';
+import 'package:instagram_clone/model/profile_card_model.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final model = HomeModel();
+    final model = ProfileCardModel();
 
     return Card(
       elevation: 4.0,

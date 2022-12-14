@@ -27,8 +27,12 @@ class PostingModel {
               toFirestore: (post, _) => post.toJson(), // write data
             );
 
+    // Firestore의 Collection > Document의 주소를 미리 만들기
+    final postDoc = postsRef.doc();
+
     postsRef.add(
       Post(
+        id: postDoc.id,
         userId: FirebaseAuth.instance.currentUser?.uid ?? 'No User Id',
         title: title,
         imageUrl:

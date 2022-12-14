@@ -1,46 +1,45 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/model/search_model.dart';
+
+import '../model/post_form.dart';
 
 class StoryGridView extends StatelessWidget {
   const StoryGridView({super.key});
 
-  final List<String> _urls = const [
-    'https://w.namu.la/s/556ae2813769fed7b8ca2258a252264b758323d38afd5f012c8c11a5dafbbef4edc00aaeb4464e0eac55e691ba2c605298682c3c081e59fdc65749fb1f4d389e9cfa8ef4808620773885073e769b1fadf2449f9aa38144b4e0fe9f50a65d8a38556a18ff335afc9c8acd170cb88541f8',
-    'https://w.namu.la/s/1b7a1f0b27dcd4ef21e10e73f808be8483d33c4870aff2cb0237687e993de924de88885ea9ce4a33577504d82c317b8394d44e5157ebf232255bfd92b2d1cbdb021020fcc55a3f90801befd93cf1efad96c8db2b9f826afaf6faf9af35d265ecaec3f2686741aa7c1695893bb2774fc5',
-    'https://w.namu.la/s/0295995040062aba40e589d1e462526df46672ef27719a833ec316822c7a16473edcabf98ff9a314bdd292aad62a4fb52905d16361f249c688e8a388208d0a5c5197160d02f8f5aed62e2436f00ecf26a420dbb3c2764e916952ba6e70b1bfee8d91e45872ef52401dab68d817ca095f',
-    'https://w.namu.la/s/741ed66671f0428fdc0dff89fda35fa202fe2f1d0132f1e0a135db7d91466b9f5129fe2064bca14ff47abf340b51713b0eaee6374620c3bd5e2c0da190e1d75b5d654ec8c61b8f90f62cfcb68735ce6a6c49e60f9b94e547fa9617b8d1516d1cfe37b73d579c59a0205b337265735e68',
-    'https://w.namu.la/s/556ae2813769fed7b8ca2258a252264b758323d38afd5f012c8c11a5dafbbef4edc00aaeb4464e0eac55e691ba2c605298682c3c081e59fdc65749fb1f4d389e9cfa8ef4808620773885073e769b1fadf2449f9aa38144b4e0fe9f50a65d8a38556a18ff335afc9c8acd170cb88541f8',
-    'https://w.namu.la/s/1b7a1f0b27dcd4ef21e10e73f808be8483d33c4870aff2cb0237687e993de924de88885ea9ce4a33577504d82c317b8394d44e5157ebf232255bfd92b2d1cbdb021020fcc55a3f90801befd93cf1efad96c8db2b9f826afaf6faf9af35d265ecaec3f2686741aa7c1695893bb2774fc5',
-    'https://w.namu.la/s/0295995040062aba40e589d1e462526df46672ef27719a833ec316822c7a16473edcabf98ff9a314bdd292aad62a4fb52905d16361f249c688e8a388208d0a5c5197160d02f8f5aed62e2436f00ecf26a420dbb3c2764e916952ba6e70b1bfee8d91e45872ef52401dab68d817ca095f',
-    'https://w.namu.la/s/741ed66671f0428fdc0dff89fda35fa202fe2f1d0132f1e0a135db7d91466b9f5129fe2064bca14ff47abf340b51713b0eaee6374620c3bd5e2c0da190e1d75b5d654ec8c61b8f90f62cfcb68735ce6a6c49e60f9b94e547fa9617b8d1516d1cfe37b73d579c59a0205b337265735e68',
-    'https://w.namu.la/s/556ae2813769fed7b8ca2258a252264b758323d38afd5f012c8c11a5dafbbef4edc00aaeb4464e0eac55e691ba2c605298682c3c081e59fdc65749fb1f4d389e9cfa8ef4808620773885073e769b1fadf2449f9aa38144b4e0fe9f50a65d8a38556a18ff335afc9c8acd170cb88541f8',
-    'https://w.namu.la/s/1b7a1f0b27dcd4ef21e10e73f808be8483d33c4870aff2cb0237687e993de924de88885ea9ce4a33577504d82c317b8394d44e5157ebf232255bfd92b2d1cbdb021020fcc55a3f90801befd93cf1efad96c8db2b9f826afaf6faf9af35d265ecaec3f2686741aa7c1695893bb2774fc5',
-    'https://w.namu.la/s/0295995040062aba40e589d1e462526df46672ef27719a833ec316822c7a16473edcabf98ff9a314bdd292aad62a4fb52905d16361f249c688e8a388208d0a5c5197160d02f8f5aed62e2436f00ecf26a420dbb3c2764e916952ba6e70b1bfee8d91e45872ef52401dab68d817ca095f',
-    'https://w.namu.la/s/741ed66671f0428fdc0dff89fda35fa202fe2f1d0132f1e0a135db7d91466b9f5129fe2064bca14ff47abf340b51713b0eaee6374620c3bd5e2c0da190e1d75b5d654ec8c61b8f90f62cfcb68735ce6a6c49e60f9b94e547fa9617b8d1516d1cfe37b73d579c59a0205b337265735e68',
-    'https://w.namu.la/s/556ae2813769fed7b8ca2258a252264b758323d38afd5f012c8c11a5dafbbef4edc00aaeb4464e0eac55e691ba2c605298682c3c081e59fdc65749fb1f4d389e9cfa8ef4808620773885073e769b1fadf2449f9aa38144b4e0fe9f50a65d8a38556a18ff335afc9c8acd170cb88541f8',
-    'https://w.namu.la/s/1b7a1f0b27dcd4ef21e10e73f808be8483d33c4870aff2cb0237687e993de924de88885ea9ce4a33577504d82c317b8394d44e5157ebf232255bfd92b2d1cbdb021020fcc55a3f90801befd93cf1efad96c8db2b9f826afaf6faf9af35d265ecaec3f2686741aa7c1695893bb2774fc5',
-    'https://w.namu.la/s/0295995040062aba40e589d1e462526df46672ef27719a833ec316822c7a16473edcabf98ff9a314bdd292aad62a4fb52905d16361f249c688e8a388208d0a5c5197160d02f8f5aed62e2436f00ecf26a420dbb3c2764e916952ba6e70b1bfee8d91e45872ef52401dab68d817ca095f',
-    'https://w.namu.la/s/741ed66671f0428fdc0dff89fda35fa202fe2f1d0132f1e0a135db7d91466b9f5129fe2064bca14ff47abf340b51713b0eaee6374620c3bd5e2c0da190e1d75b5d654ec8c61b8f90f62cfcb68735ce6a6c49e60f9b94e547fa9617b8d1516d1cfe37b73d579c59a0205b337265735e68',
-    'https://w.namu.la/s/556ae2813769fed7b8ca2258a252264b758323d38afd5f012c8c11a5dafbbef4edc00aaeb4464e0eac55e691ba2c605298682c3c081e59fdc65749fb1f4d389e9cfa8ef4808620773885073e769b1fadf2449f9aa38144b4e0fe9f50a65d8a38556a18ff335afc9c8acd170cb88541f8',
-    'https://w.namu.la/s/1b7a1f0b27dcd4ef21e10e73f808be8483d33c4870aff2cb0237687e993de924de88885ea9ce4a33577504d82c317b8394d44e5157ebf232255bfd92b2d1cbdb021020fcc55a3f90801befd93cf1efad96c8db2b9f826afaf6faf9af35d265ecaec3f2686741aa7c1695893bb2774fc5',
-    'https://w.namu.la/s/0295995040062aba40e589d1e462526df46672ef27719a833ec316822c7a16473edcabf98ff9a314bdd292aad62a4fb52905d16361f249c688e8a388208d0a5c5197160d02f8f5aed62e2436f00ecf26a420dbb3c2764e916952ba6e70b1bfee8d91e45872ef52401dab68d817ca095f',
-    'https://w.namu.la/s/741ed66671f0428fdc0dff89fda35fa202fe2f1d0132f1e0a135db7d91466b9f5129fe2064bca14ff47abf340b51713b0eaee6374620c3bd5e2c0da190e1d75b5d654ec8c61b8f90f62cfcb68735ce6a6c49e60f9b94e547fa9617b8d1516d1cfe37b73d579c59a0205b337265735e68',
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      scrollDirection: Axis.vertical,
-      itemCount: _urls.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3, // 열마다 아이템의 개수
-        mainAxisSpacing: 2, // 각 아이템 별 간격
-        crossAxisSpacing: 2, // 아니면 GridView()를 Padding()으로 감싸도 된다
-      ),
-      itemBuilder: (BuildContext context, int index) {
-        final url = _urls[index];
-        return Image.network(
-          url,
-          fit: BoxFit.cover,
+    final model = SearchScreenModel();
+
+    return StreamBuilder<QuerySnapshot<Post>>(
+      stream: model.postsStream,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Text("알 수 없는 에러가 발생했습니다.");
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        List<Post> posts = snapshot.data!.docs.map((e) => e.data()).toList();
+
+        return GridView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: posts.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3, // 열마다 아이템의 개수
+            mainAxisSpacing: 2, // 각 아이템 별 간격
+            crossAxisSpacing: 2, // 아니면 GridView()를 Padding()으로 감싸도 된다
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            final post = posts[index];
+            return Image.network(
+              post.imageUrl,
+              fit: BoxFit.cover,
+            );
+          },
         );
       },
     );

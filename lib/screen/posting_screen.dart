@@ -13,6 +13,8 @@ class _PostingState extends State<Posting> {
   final model = PostingModel();
   File? _image;
 
+  bool isLoading = false;
+
   // TextController
   // https://devmg.tistory.com/185
   final _titleTextControlller = TextEditingController();
@@ -29,9 +31,22 @@ class _PostingState extends State<Posting> {
         title: const Text("New Post"),
         actions: <Widget>[
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               if (_image != null && _titleTextControlller.text.isNotEmpty) {
-                model.uploadPost(_titleTextControlller.text, _image!);
+                setState(() {
+                  isLoading = true;
+                });
+
+                await model.uploadPost(_titleTextControlller.text, _image!);
+
+                setState(() {
+                  isLoading = false;
+                });
+
+                // mounted: ??? async 함수 안에서 context를 사용하려면 사용해줘야한다
+                if (mounted) {
+                  Navigator.pop(context);
+                }
               }
             },
             icon: const Icon(Icons.send),
@@ -65,6 +80,7 @@ class _PostingState extends State<Posting> {
                 },
                 child: const Text("Images..."),
               ),
+              if (isLoading) const CircularProgressIndicator(),
               if (_image != null)
                 Image.file(
                   _image!,

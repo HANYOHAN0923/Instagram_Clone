@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             const ProfileCard(),
-            const Post(),
+            const PostWidget(),
           ],
         ),
       ),
