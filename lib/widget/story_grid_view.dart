@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/model/search_model.dart';
+import 'package:instagram_clone/model/search_screen_model.dart';
+import 'package:instagram_clone/screen/detail_post_screen.dart';
 
 import '../model/post_form.dart';
 
@@ -35,9 +36,23 @@ class StoryGridView extends StatelessWidget {
           ),
           itemBuilder: (BuildContext context, int index) {
             final post = posts[index];
-            return Image.network(
-              post.imageUrl,
-              fit: BoxFit.cover,
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailPostScreen(post: post),
+                  ),
+                );
+              },
+              child: Hero(
+                // animation
+                tag: post.id, // required uniq value
+                child: Image.network(
+                  post.imageUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
             );
           },
         );

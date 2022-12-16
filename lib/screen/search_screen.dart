@@ -40,7 +40,7 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       // GirdView.count => 화면에 표시할 아이템의 개수가 정해져 있을 때
       // GirdView.builder => 동적 설계
-      body: StoryGridView(),
+      body: const StoryGridView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
